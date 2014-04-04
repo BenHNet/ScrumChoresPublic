@@ -1,0 +1,22 @@
+﻿
+<script id="chorelist" type="text/x-kendo-template">
+
+    @{Html.RenderPartial("../Sprint/SprintPartial");}
+
+    @{Html.RenderPartial("../Chore/ChoreEntryPartial");}
+
+</script>
+
+<script type="text/x-kendo-template" id="sprintViewTemplate">
+    <div class="sprintView k-widget">
+        <h4>#:SprintName#</h4>
+        <h6>#= kendo.toString((kendo.parseDate(SprintStartDate)), 'MMM dd')#  -  #: kendo.toString((kendo.parseDate(SprintEndDate)), 'MMM dd')#</h6>
+    </div>
+</script>
+
+
+
+
+
+
+

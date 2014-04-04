@@ -1,0 +1,16 @@
+﻿<div id="sprintPanel" class="col-md-3">
+
+    <h1>Sprints</h1>
+
+    <a href="#/chorelist" data-bind="click: createSprint">New</a>
+    <a href="#/chorelist" data-bind="click: editSprint">Change</a>
+    <a href="#/chorelist" data-bind="click: deleteSprint">Remove</a>
+
+    <div id="sprintListView"
+         data-role="listview"
+         data-template="sprintViewTemplate"
+         data-bind="source: sprintsDataSource"
+         style="overflow: auto">
+    </div>
+    
+</div>

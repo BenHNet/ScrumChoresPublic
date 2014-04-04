@@ -1,0 +1,48 @@
+﻿<div id="sprintAddEdit" style="margin: auto;">
+    <div style="display: none;" data-bind="style: {
+        display: isSprintAddEditVisible }">
+
+        <div class="lightbox_content" style="height: 300px; width: 600px;">
+            <!-- Add Edit form -->
+
+            <h5 data-bind="text: formTitle"></h5>
+            <hr />
+
+            <div class="form">
+                <!-- Contact form (not working)-->
+                <form class="form-horizontal">
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="name">Name</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="name" data-bind="value: selectedName">
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="email">Start Date</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="email" data-bind="value: selectedStartDate">
+                        </div>
+                    </div>
+                    <!-- Website -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="website">End Date</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="website" data-bind="value: selectedEndDate">
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="form-group">
+                        <!-- Buttons -->
+                        <div class="col-md-6 col-md-offset-3">
+                            <button type="submit" class="btn btn-default" data-bind="events:{ click: saveSprint }">Save</button>
+                            <button type="reset" class="btn btn-default" data-bind="events:{ click: cancelAddEditSprint }">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="lightbox_overlay"></div>
+    </div>
+</div>

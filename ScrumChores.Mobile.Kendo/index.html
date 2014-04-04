@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrum Chores</title>
+
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet" type="text/css">
+
+    <link href="http://localhost:5155/Content/Kendo/kendo.common.css" rel="stylesheet">
+    <link href="http://localhost:5155/Content/bootstrap.css" rel="stylesheet">
+    <link href="http://localhost:5155/Content/font-awesome.css" rel="stylesheet">
+    <link href="http://localhost:5155/Content/style.css" rel="stylesheet">
+    <link href="http://localhost:5155/Content/blue.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div style="float: left;">
+                <h1 style="color: white;">Scrum Chores</h1>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+    </div>
+    <div class="navbar navbar-fixed-bottom">
+        <div class="container">
+            <p>© 2014 - Scrum Chores</p>
+        </div>
+    </div>
+
+    <script id="loginview" type="text/x-kendo-template">
+        <div class="container body-content">
+            <h2>Log in.</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <section>
+                        <form id="loginform" action="" class="form-horizontal" method="get" role="form" novalidate="novalidate">
+                             <hr>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="UserName">User name</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" data-val="true" data-val-required="The User name field is required." id="UserName" name="UserName" type="text" value="" data-bind="value: UserName">
+                                    <span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="Password">Password</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" data-val="true" data-val-required="The Password field is required." id="Password" name="Password" type="password" data-bind="value: Password">
+                                    <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true"><input name="RememberMe" type="hidden" data-bind="value: RememberMe">
+                                        <label for="RememberMe">Remember me?</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="button" onclick="window.loginScrumChores.loginVM.login();" class="btn btn-default" value="Log in">
+                                    <input type="button" onclick="window.loginScrumChores.router.navigate('/register');" class="btn btn-default" value="Register">
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="regview" type="text/x-kendo-template">
+        <div class="container body-content">
+            <h2>Register.</h2>
+            <form id="regform" action="" class="form-horizontal" method="get" role="form" novalidate="novalidate">
+                 <hr>
+                <div class="validation-summary-valid" data-valmsg-summary="true">
+                    <ul>
+                        <li style="display:none"></li>
+                    </ul>
+                </div>    <div class="form-group">
+                    <label class="col-md-2 control-label" for="UserName">User name</label>
+                    <div class="col-md-10">
+                        <input class="form-control" data-val="true" data-val-required="The User name field is required." id="UserName" name="UserName" type="text" data-bind="value: UserName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="FirstName">First name</label>
+                    <div class="col-md-10">
+                        <input class="form-control" data-val="true" data-val-required="The First name field is required." id="FirstName" name="FirstName" type="text" data-bind="value: FirstName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="LastName">Last name</label>
+                    <div class="col-md-10">
+                        <input class="form-control" data-val="true" data-val-required="The Last name field is required." id="LastName" name="LastName" type="text" data-bind="value: LastName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Password">Password</label>
+                    <div class="col-md-10">
+                        <input class="form-control" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="Password" name="Password" type="password" data-bind="value: Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="ConfirmPassword">Confirm password</label>
+                    <div class="col-md-10">
+                        <input class="form-control" data-val="true" data-val-equalto="'Confirm password' and 'Password' do not match." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" type="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" onclick="window.loginScrumChores.loginVM.register();" class="btn btn-default" value="Register">
+                        <input type="button" onclick="window.loginScrumChores.router.navigate('/login');" class="btn btn-default" value="Back">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </script>
+
+    <script src="http://localhost:5155/Scripts/jquery-1.10.2.js"></script>
+    <script src="http://localhost:5155/Scripts/bootstrap.js"></script>
+    <script src="http://localhost:5155/Scripts/respond.js"></script>
+    <script src="http://localhost:5155/Scripts/jquery.validate.js"></script>
+    <script src="http://localhost:5155/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="http://localhost:5155/Scripts/Kendo/kendo.all.js"></script>
+    <script src="http://localhost:5155/Scripts/ViewModels/LoginViewModel.js"></script>
+    <script src="http://localhost:5155/Scripts/App/login.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            console.log("Running Login Setup");
+            window.loginScrumChores.setup();
+            window.loginScrumChores.loginVM.initializeLogin();
+            $.validator.unobtrusive.parse("#loginform");
+            $.validator.unobtrusive.parse("#regform");
+        });
+
+    </script>
+</body>
+</html>

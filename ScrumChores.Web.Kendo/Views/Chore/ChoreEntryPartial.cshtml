@@ -1,0 +1,21 @@
+﻿<div id="chorePanel" class="col-md-9">
+    <h1>Chores</h1>
+
+    <a href="#/chorelist" data-bind="click: createStory">New</a>
+    <a href="#/chorelist" data-bind="click: editStory">Change</a>
+    <a href="#/chorelist" data-bind="click: deleteStory">Remove</a>
+
+    <div id="choreGrid"
+         data-role="grid"
+         data-sortable="true"
+         data-pageable="true"
+         data-filterable="true"
+         data-bind="source: storyDataSource"
+         data-editable="inline"
+         data-selectable="true"
+         data-columns='[
+                    { field: "Title", title: "Title", width: "100px" },
+                    { field: "Description", title: "Description", width: "300px" },
+                    { field: "Effort", title: "Effort", width: "50px" }]'>
+    </div>
+</div>

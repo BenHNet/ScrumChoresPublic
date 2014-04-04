@@ -1,0 +1,32 @@
+﻿@section Scripts {
+    @Scripts.Render("~/bundles/kendoall")
+    @Scripts.Render("~/bundles/chorelist")
+    @Scripts.Render("~/bundles/scrumchores")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            console.log("Running Setup");
+            window.appScrumChores.setup();
+        });
+
+    </script>
+}
+<div id="container" class="k-content">
+    <div id="windows">
+
+        @{Html.RenderPartial("../Sprint/SprintAddEdit");}
+
+    </div>
+
+    <div id="main"></div>
+</div>
+
+@{Html.RenderPartial("Home");}
+
+@{Html.RenderPartial("ChoreList");}
+
+@{Html.RenderPartial("ChoreBoard");}
+
+
+

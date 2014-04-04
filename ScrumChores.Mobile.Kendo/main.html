@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrum Chores</title>
+
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet" type="text/css">
+
+    <link href="http://localhost:5155/Content/Kendo/kendo.common.css" rel="stylesheet">
+    <link href="http://localhost:5155/Content/bootstrap.css" rel="stylesheet">
+    <link href="http://localhost:5155/Content/font-awesome.css" rel="stylesheet">
+    <link href="http://localhost:5155/Content/style.css" rel="stylesheet">
+    <link href="http://localhost:5155/Content/blue.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div style="float: left;">
+                <h1 style="color: white;">Scrum Chores</h1>
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#/chorelist">Chore List</a></li>
+                    <li><a href="#/choreboard">Chore Board</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="windows">
+        <div id="sprintAddEdit" style="margin: auto;">
+            <div style="display: none;" data-bind="style: {
+        display: isSprintAddEditVisible }">
+
+                <div class="lightbox_content" style="width: 100%;">
+                    <!-- Add Edit form -->
+
+                    <h5 data-bind="text: formTitle"></h5>
+                    <hr />
+
+                    <div class="form">
+                        <!-- Contact form (not working)-->
+                        <form class="form-horizontal">
+                            <!-- Name -->
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="name">Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="name" data-bind="value: selectedName">
+                                </div>
+                            </div>
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="email">Start Date</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="email" data-bind="value: selectedStartDate">
+                                </div>
+                            </div>
+                            <!-- Website -->
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="website">End Date</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="website" data-bind="value: selectedEndDate">
+                                </div>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="form-group">
+                                <!-- Buttons -->
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-default" data-bind="events:{ click: saveSprint }">Save</button>
+                                    <button type="reset" class="btn btn-default" data-bind="events:{ click: cancelAddEditSprint }">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="lightbox_overlay"></div>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="main" class="container body-content">
+    </div>
+    <div class="navbar navbar-fixed-bottom">
+        <div class="container">
+            <p>© 2014 - Scrum Chores</p>
+        </div>
+    </div>
+
+    <script id="homeview" type="text/x-kendo-template">
+        <h1>Home</h1>
+    </script>
+
+    <script id="chorelist" type="text/x-kendo-template">
+
+        <div id="sprintPanel" class="col-md-3">
+
+            <h1>Sprints</h1>
+
+            <a href="#/chorelist" data-bind="click: createSprint">New</a>
+            <a href="#/chorelist" data-bind="click: editSprint">Change</a>
+            <a href="#/chorelist" data-bind="click: deleteSprint">Remove</a>
+
+            <div id="sprintListView"
+                 data-role="listview"
+                 data-template="sprintViewTemplate"
+                 data-bind="source: sprintsDataSource"
+                 style="overflow: auto">
+            </div>
+
+        </div>
+
+        <div id="chorePanel" class="col-md-9" style="display: none;">
+            <h1>Chores</h1>
+
+            <a href="#/chorelist" data-bind="click: createStory">New</a>
+            <a href="#/chorelist" data-bind="click: editStory">Change</a>
+            <a href="#/chorelist" data-bind="click: deleteStory">Remove</a>
+
+            <div id="choreGrid"
+                 data-role="grid"
+                 data-sortable="true"
+                 data-pageable="true"
+                 data-filterable="true"
+                 data-bind="source: storyDataSource"
+                 data-editable="inline"
+                 data-selectable="true"
+                 data-columns='[
+                    { field: "Title", title: "Title", width: "100px" },
+                    { field: "Description", title: "Description", width: "300px" },
+                    { field: "Effort", title: "Effort", width: "50px" }]'>
+            </div>
+        </div>
+
+    </script>
+
+    <script type="text/x-kendo-template" id="sprintViewTemplate">
+        <div class="sprintView k-widget">
+            <h4>#:SprintName#</h4>
+            <h6>#= kendo.toString((kendo.parseDate(SprintStartDate)), 'MMM dd')#  -  #: kendo.toString((kendo.parseDate(SprintEndDate)), 'MMM dd')#</h6>
+        </div>
+    </script>
+
+    <script id="choreboard" type="text/x-kendo-template">
+        <h1>Chore Board</h1>
+    </script>
+
+    <script src="http://localhost:5155/Scripts/jquery-1.10.2.js"></script>
+    <script src="http://localhost:5155/Scripts/bootstrap.js"></script>
+    <script src="http://localhost:5155/Scripts/respond.js"></script>
+    <script src="http://localhost:5155/Scripts/Kendo/kendo.all.js"></script>
+    <script src="http://localhost:5155/Scripts/ViewModels/SprintViewModel.js"></script>
+    <script src="http://localhost:5155/Scripts/ViewModels/ChoreViewModel.js"></script>
+    <script src="http://localhost:5155/Scripts/App/app.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            console.log("Running Login Setup");
+            window.appScrumChores.setup();
+        });
+
+    </script>
+</body>
+</html>
